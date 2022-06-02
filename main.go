@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
@@ -17,9 +19,17 @@ type webhookData struct {
 }
 
 func main() {
-	hookData := webhookData{}
-	keys, err := ioutil.ReadFile("keys.json")
+	exePath, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
 
+	keyPath := filepath.Dir(exePath)
+	keysPath := filepath.Join(keyPath, "keys.json")
+
+	hookData := webhookData{}
+
+	keys, err := ioutil.ReadFile(keysPath)
 	if err != nil {
 		panic(err)
 	}
