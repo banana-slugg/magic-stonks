@@ -24,8 +24,8 @@ func main() {
 		panic(err)
 	}
 
-	keyPath := filepath.Dir(exePath)
-	keysPath := filepath.Join(keyPath, "keys.json")
+	folderPath := filepath.Dir(exePath)
+	keysPath := filepath.Join(folderPath, "keys.json")
 
 	hookData := webhookData{}
 
